@@ -8,17 +8,18 @@ public class Main {
 
             int userInput = validator.checkIsInteger();
 
-            if (userInput == 1) {                                                   // Считать все месячные отчёты
+            if (userInput == 1) {                                                // Считать все месячные отчёты
                 validator.getMonthlyRecords();
-            } else if (userInput == 2) {                                                 //Считать годовой отчёт
+            } else if (userInput == 2) {                                         //Считать годовой отчёт
                 validator.getYearlyRecord();
 
             } else if (userInput == 3) {                                         //Сверить отчёты
-                Validator.validateIncome();
-                Validator.validateExpense();
+                Validator.validateIncome();                                      //Сверяем доходы в годовом и меячных отчетах
+                Validator.validateExpense();                                     //Сверяем расходы в годовом и меячных отчетах
 
             } else if (userInput == 4) {                                        //Вывести информацию о всех месячных отчётах
                 validator.printMonthlyReport();
+
             } else if (userInput == 5) {                                        //Вывести информацию о годовом отчёте
                 validator.printYearlyReport();
 
@@ -41,4 +42,3 @@ public class Main {
 
     }
 }
-

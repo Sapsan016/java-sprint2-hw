@@ -12,7 +12,6 @@ public class Validator {
             System.out.println("Это не число! Введите число");
             scanner.next();
         }
-
         return scanner.nextInt();
     }
     public void getMonthlyRecords(){                                         //Подтверждение скачивание месячных отчетов
@@ -23,41 +22,31 @@ public class Validator {
         yearlyReport.saveYearlyReport(2021, "resources/y.2021.csv");
         System.out.println("Данные по годовому отчету считаны!");
     }
-    public static void validateIncome() {                                             //Сверяем доходы по месяцам
-
-      if (yearlyReport.findIncome(1) == 0 ||
-              monthlyReport.calculateTotalIncome(1) == 0) {                //Проверяем, если отчеты не считаны,
-                                                                                  // то печать сообщения и возврат в меню
-          System.out.println("Данные еще не считаны! Пожалуйста, сначала считайте данные!");
-          return;
-      }
-
-        if (yearlyReport.findIncome(1) != monthlyReport.calculateTotalIncome(1)) {
-
-                System.out.println("Доход за Январь в годовом и месячном отчете не сходится!");
-        } else if (yearlyReport.findIncome(2) != monthlyReport.calculateTotalIncome(2)) {
-
-                System.out.println("Доход за Февраль в годовом и месячном отчете не сходится!");
-        } else if (yearlyReport.findIncome(3) != monthlyReport.calculateTotalIncome(3)) {
-
-                System.out.println("Доход за Март в годовом и месячном отчете не сходится!");
-        } else
-                System.out.println("Сверка доходов завершена успешно!");
-    }
-
-    public static void validateExpense(){                                                  //Сверяем расходы по месяцам
-      if (yearlyReport.findExpense(1) == 0 ||
-               monthlyReport.calculateTotalExpense(1) == 0) {          //Если отчеты не считаны возврат в меню
+    public static void validateIncome() {                                                    //Сверяем доходы по месяцам
+        if (yearlyReport.findIncome(1) == 0 ||
+                monthlyReport.calculateTotalIncome(1) == 0) {                //Проверяем, если отчеты не считаны,
+                                                                                    // то печать сообщения и возврат в меню
+            System.out.println("Данные еще не считаны! Пожалуйста, сначала считайте данные!");
             return;
-      }
-        if (yearlyReport.findExpense(1) != monthlyReport.calculateTotalExpense(1)){
-            System.out.println("Расходы за Январь в годовом и месячном отчете не сходятся!");
-        } else if (yearlyReport.findExpense(2) != monthlyReport.calculateTotalExpense(2)) {
-            System.out.println("Расходы за Февраль в годовом и месячном отчете не сходятся!");
-        } else if (yearlyReport.findExpense(3) != monthlyReport.calculateTotalExpense(3)) {
-            System.out.println("Расходы за Март в годовом и месячном отчете не сходятся!");
-        }else
-            System.out.println("Сверка расходов завершена успешно!");
+        }
+        for (int i = 1; i <= 3; i++) {
+            if (yearlyReport.findIncome(i) != monthlyReport.calculateTotalIncome(i)) {  //Проходим через цикл по всем отчетам
+                System.out.println("Доход за " + 1 +                                    //Если данные в месячном и годовом отчете не совпадают
+                        " месяц в годовом и месячном отчете не сходится!");             //печатаем номер месяца
+            }
+        }System.out.println("Сверка доходов завершена успешно!");
+    }
+    public static void validateExpense() {                                          //Сверяем расходы по месяцам
+        if (yearlyReport.findExpense(1) == 0 ||
+                monthlyReport.calculateTotalExpense(1) == 0) {            //Если отчеты не считаны возврат в меню
+            return;
+        }
+        for (int i = 1; i <= 3; i++) {                                                      //Проходим через цикл по всем отчетам
+            if (yearlyReport.findExpense(i) != monthlyReport.calculateTotalExpense(i)) {   //Если данные в месячном и годовом отчете не совпадают
+                System.out.println("Расходы за " + i +                                     //печатаем номер месяца
+                        " месяц в годовом и месячном отчете не сходятся!");
+            }
+        }System.out.println("Сверка расходов завершена успешно!");
     }
     public void printMonthlyReport() {                                           //Печать месячного отчета
      if (monthlyReport.calculateTotalExpense(1) == 0) {                 //Проверка на считывание
@@ -88,7 +77,3 @@ public class Validator {
                 "Средний доход за все месяцы составил " + yearlyReport.calculateAverageIncome() + ".");
     }
 }
-
-
-
-

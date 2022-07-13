@@ -31,122 +31,49 @@ public class MonthlyReport {
             }
         }
     }
-    public int calculateTotalExpense(int monthNum){         //Считаем общий расход по месяцам
+    public int calculateTotalExpense(int monthNum){                 //Считаем общий расход по месяцам
         int sumExpense = 0;
-        if (monthNum == 1) {
             for (MonthlyRecord row : rows) {
-                if (row.monthNum == 1 && (row.isExpense)){
-                    sumExpense += (row.sumOfOne * row.quantity); //Общий расход за Январь
+                if (row.monthNum == monthNum && (row.isExpense)){       //Номер месяца передается в цикл
+                    sumExpense += (row.sumOfOne * row.quantity);        //Сумма общего расхода за месяц
                 }
             }return sumExpense;
-        }else if (monthNum == 2) {
-            for (MonthlyRecord row : rows) {
-                if (row.monthNum == 2 && (row.isExpense)) {
-                    sumExpense += (row.sumOfOne * row.quantity); //Общий расход за Февраль
-                }
-            }return sumExpense;
-        }else {
-            for (MonthlyRecord row : rows) {
-                if (row.monthNum == 3 && (row.isExpense)) {
-                    sumExpense += (row.sumOfOne * row.quantity); //Общий расход за Март
-                }
-            }
-        } return sumExpense;
-    }
+        }
 
     public int calculateTotalIncome(int monthNum) {                 //Считаем общий доход по месяцам
         int sumIncome = 0;
-        if (monthNum == 1) {
             for (MonthlyRecord row : rows) {
-                if (row.monthNum == 1 && (!row.isExpense)) {
-                    sumIncome += (row.sumOfOne * row.quantity); //Общий доход за Январь
+                if (row.monthNum == monthNum && (!row.isExpense)) {         //Номер месяца передается в цикл
+                    sumIncome += (row.sumOfOne * row.quantity);             //Сумма дохода за месяц
                     }
-                }return sumIncome;
-            }else if (monthNum == 2) {
-            for (MonthlyRecord row : rows) {
-                if (row.monthNum == 2 && (!row.isExpense)) {
-                    sumIncome += (row.sumOfOne * row.quantity); //Общий доход за Февраль
-                    }
-                }return sumIncome;
-            } else {
-            for (MonthlyRecord row : rows) {
-                if (row.monthNum == 3 && (!row.isExpense)) {
-                    sumIncome += (row.sumOfOne * row.quantity); //Общий доход за Март
-                }
-            }
-        }return sumIncome;
+                        }return sumIncome;
     }
 
     public void findMaxProfitItem(int monthNum) {        // Находим самый прибыльный товар по месяцам
         int sumMaxProfitItem = 0;
         String maxProfitItem = null;
-        if (monthNum == 1) {                                //Январь
             for (MonthlyRecord row : rows) {
-                if (row.monthNum == 1 && (!row.isExpense)) {
+                if (row.monthNum == monthNum && (!row.isExpense)) {         //Номер месяца передается в цикл
                     if ((row.sumOfOne * row.quantity) > sumMaxProfitItem) {
-                        sumMaxProfitItem = (row.sumOfOne * row.quantity);
-                        maxProfitItem = row.itemName;
+                        sumMaxProfitItem = (row.sumOfOne * row.quantity);       //Сумма самого прибыльного товара
+                        maxProfitItem = row.itemName;                           //Название самого прибыльного товара
                     }
                 }
             }
-            System.out.println("Самый прибыльный товар: " + maxProfitItem + ". Выручена сумма: " + sumMaxProfitItem);
-        } else if (monthNum == 2) {                             //Февраль
-
-            for (MonthlyRecord row : rows) {
-                if (row.monthNum == 2 && (!row.isExpense)) {
-                    if ((row.sumOfOne * row.quantity) > sumMaxProfitItem) {
-                        sumMaxProfitItem = (row.sumOfOne * row.quantity);
-                        maxProfitItem = row.itemName;
-                    }
-                }
-            }
-            System.out.println("Самый прибыльный товар: " + maxProfitItem + ". Выручена сумма: " + sumMaxProfitItem);
-        } else {
-            for (MonthlyRecord row : rows) {                                //Март
-                if (row.monthNum == 3 && (!row.isExpense)) {
-                    if ((row.sumOfOne * row.quantity) > sumMaxProfitItem) {
-                        sumMaxProfitItem = (row.sumOfOne * row.quantity);
-                        maxProfitItem = row.itemName;
-                    }
-                }
-            }
-            System.out.println("Самый прибыльный товар: " + maxProfitItem + ". Выручена сумма: " + sumMaxProfitItem);
-        }
+        System.out.println("Самый прибыльный товар: " + maxProfitItem + ". Выручена сумма: " + sumMaxProfitItem);
     }
+
     public void findMaxExpenseItem(int monthNum) {    //Находим самую большую трату по месяцам
         int sumMaxExpenseItem = 0;
         String maxExpenseItem = null;
-        if (monthNum == 1) {                                            //Январь
             for (MonthlyRecord row : rows) {
-                if (row.monthNum == 1 && (row.isExpense)) {
+                if (row.monthNum == monthNum && (row.isExpense)) {                  //Номер месяца передается в цикл
                     if ((row.sumOfOne * row.quantity) > sumMaxExpenseItem) {
-                        sumMaxExpenseItem = (row.sumOfOne * row.quantity);
-                        maxExpenseItem = row.itemName;
+                        sumMaxExpenseItem = (row.sumOfOne * row.quantity);         //Сумма наибольшей траты
+                        maxExpenseItem = row.itemName;                             //Название самой дорогой траты
                     }
                 }
             }
-            System.out.println("Самый большая трата: " + maxExpenseItem + ". Потрачена сумма: " + sumMaxExpenseItem);
-        } else if (monthNum == 2) {                                                 //Февраль
-
-            for (MonthlyRecord row : rows) {
-                if (row.monthNum == 2 && (row.isExpense)) {
-                    if ((row.sumOfOne * row.quantity) > sumMaxExpenseItem) {
-                        sumMaxExpenseItem = (row.sumOfOne * row.quantity);
-                        maxExpenseItem = row.itemName;
-                    }
-                }
-            }
-            System.out.println("Самый большая трата: " + maxExpenseItem + ". Потрачена сумма: " + sumMaxExpenseItem);
-        } else {
-            for (MonthlyRecord row : rows) {                                    //Март
-                if (row.monthNum == 3 && (row.isExpense)) {
-                    if ((row.sumOfOne * row.quantity) > sumMaxExpenseItem) {
-                        sumMaxExpenseItem = (row.sumOfOne * row.quantity);
-                        maxExpenseItem = row.itemName;
-                    }
-                }
-            }
-            System.out.println("Самый большая трата: " + maxExpenseItem + ". Потрачена сумма: " + sumMaxExpenseItem);
+        System.out.println("Самый большая трата: " + maxExpenseItem + ". Потрачена сумма: " + sumMaxExpenseItem);
         }
     }
-}
